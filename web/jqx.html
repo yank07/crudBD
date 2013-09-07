@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="js/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.columnsresize.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.pager.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.edit.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var loadGrid = function () {
+                $.ajax({
+                    url: "http://localhost:8080/CRUD/webresources/clientes",
+                    dataType: 'json',
+                    beforeSend: function () {
+                        $("jqxgrid").html('');
+                    },
+                    error: function (json, textStatus, errorThrown) {
+                        alert(' Error :' + errorThrown);
+                    },
+                    success: function (data) {
+                        // initailize grid
+                        var gridData = data;
+                        var gridSource =
+                        {
+                            localdata: gridData,
+                            datatype: 'json'
+                        };
+                        var gridDataAdapter = new $.jqx.dataAdapter(gridSource);
+                        $("#jqxgrid").jqxGrid(
+                        {
+                            width: 670,
+                            source: gridDataAdapter,
+                            editable: true,
+                            pageable: true,
+                            autoheight: true,
+                            selectionmode: 'singlecell',
+                            columns: [
+                              { text: 'ID', datafield: 'id', width: 120 },
+                              { text: 'Nombre', datafield: 'nombre', width: 250 },
+                              { text: 'Direccion', datafield: 'direccion', width: 250 },
+                              { text: 'CI', datafield: 'ci', width: 180 }
+
+                         ]
+                    });
+                    }
+                });
+            };
+            loadGrid();
+            $("#Button").click(function () {
+                loadGrid();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="jqxgrid">
+    </div>
+    <input type="button" value="Button" id="Button" />
+</body>
+</html>

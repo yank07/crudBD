@@ -1,0 +1,107 @@
+
+<html>
+<head>
+<title>Venta RESTFul Aponte/Valdez</title>
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="js/jqwidgets/styles/jqx.base.css" type="text/css" />
+</head>
+
+<body>
+<div id="main" >
+    
+    
+<div class="header">
+        <center> <h1> Ventas Online</h1>
+        </center>
+        <h2>Selecionar Cliente</h2>
+
+        <input type="text" id="searchKey"/>
+	<button id="btnSearch">Listar</button>
+	<button id="btnAdd">Cliente Nuevo</button>
+</div>
+
+
+<div class="leftArea"  id="jqxgrid"></div>
+
+<form id="wineForm">
+	
+    <div class="mainArea" id="mainArea">
+
+<label>Id:</label>
+<input id="clienteId" name="id" type="text" disabled />
+
+<label>Nombre:</label>
+<input type="text" id="nombre" name="name" required />
+
+<label>Direccion:</label>
+<input type="text" id="direccion" name="direccion"/>
+
+<label>CI:</label>
+<input type="text" id="ci" name="ci"/>
+
+<button id="btnGuardar">Guardar</button>
+<button id="btnBorrar">Borrar</button>
+<button id="btnContinuar">Continuar compra</button>
+
+
+</div>
+
+<!--<div class="rightArea">
+
+
+<label>Notes:</label>
+<textarea id="description" name="description"></textarea>
+</div>
+-->
+</form>     
+</div>
+
+
+
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/underscore-min.js"></script>
+<script src="js/backbone-min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.columnsresize.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.pager.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.edit.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxdata.js"></script>
+    <script src="js/crud.js"></script>
+    
+
+
+<script>
+$(document).ready(function()
+{       
+	
+        $("#jqxgrid").on('rowselect', function (event) {
+                var id = event.args.row.id;
+                var nombre = event.args.row.nombre;
+                var direccion = event.args.row.direccion;
+                var ci = event.args.row.ci;
+                
+                console.log("askhdflkajd lo logreee");
+                console.log(nombre + "--" + id +"---"+direccion+"---"+ ci );
+                $('#clienteId').val(id);
+             $('#nombre').val(nombre);
+             $('#direccion').val(direccion);
+             $('#ci').val(ci);
+             
+            });
+            
+           
+});
+
+//CREAR DIVS PARA PONER EN el:#grid (reemplazar), mirar css porque no va a dibujar bien divs
+</script>
+
+</body>
+</html>

@@ -1,0 +1,115 @@
+
+<html>
+<head>
+<title>Venta RESTFul Aponte/Valdez</title>
+<link rel="stylesheet" href="css/styles.css" />
+<link rel="stylesheet" href="js/jqwidgets/styles/jqx.base.css" type="text/css" />
+</head>
+
+<body>
+<div id="main" >
+<div class="header">
+        <center> <h1> Ventas Online</h1> </center>
+        
+        <h2>Selecionar Lista de Productos</h2>
+        
+	<input type="text" id="searchKey"/>
+	<button id="btnSearch">Listar</button>
+	
+        <a href="/CRUD/indexProductos.html" target="_blank">New Producto</a>
+</div>
+
+
+<div class="leftArea"  id="jqxgrid"></div>
+
+<div class="leftArea2"  id="jqxgrid2"></div>
+
+<form id="wineForm">
+	
+<div class="mainArea">
+
+<label>Id:</label>
+<input id="productoId" name="id" type="text" disabled />
+
+<label>Nombre:</label>
+<input type="text" id="nombre" name="name" disabled />
+
+<label>Descripcion:</label>
+<input type="text" id="descripcion" name="descripcion" disabled/>
+
+<label>Cantidad disponible:</label>
+<input type="text" id="cantidad" name="cantidad" disabled />
+
+<label>Precio:</label>
+<input type="text" id="precio" name="precio" disabled  />
+
+<label>Cantidad a Comprar:</label>
+<input type="text" id="cant_venta" name="precio"   />
+
+
+
+
+
+<button id="btnAgregarCarrito">Agregar al carrito</button>
+<button id="btnIrPago">Ir a Pago</button>
+
+
+
+</div>
+
+<!--<div class="rightArea">
+
+
+<label>Notes:</label>
+<textarea id="description" name="description"></textarea>
+</div>
+-->
+</form>     
+</div>
+
+
+
+<script src="js/jquery-1.7.1.min.js"></script>
+<script src="js/underscore-min.js"></script>
+<script src="js/backbone-min.js"></script>
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxlistbox.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.selection.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.columnsresize.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.pager.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxgrid.edit.js"></script>
+    <script type="text/javascript" src="js/jqwidgets/jqxdata.js"></script>
+    <script src="js/crudProducto.js"></script>
+
+
+<script>
+$(document).ready(function()
+{       
+	$("#jqxgrid").on('rowselect', function (event) {
+                var id = event.args.row.id;
+                var nombre = event.args.row.nombre;
+                var descripcion = event.args.row.descripcion;
+                var cantidad = event.args.row.cantidad;
+                var precio = event.args.row.precio;
+                console.log("askhdflkajd lo logreee");
+                console.log(nombre + "--" + id +"---"+descripcion+"---"+ cantidad );
+                $('#productoId').val(id);
+             $('#nombre').val(nombre);
+             $('#descripcion').val(descripcion);
+             $('#cantidad').val(cantidad);
+             $('#precio').val(precio);
+            });
+
+});
+
+//CREAR DIVS PARA PONER EN el:#grid (reemplazar), mirar css porque no va a dibujar bien divs
+</script>
+
+</body>
+</html>
