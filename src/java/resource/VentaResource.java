@@ -13,9 +13,9 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-import entities.Venta;
-import entities.Cliente;
-import entities.VentaDetalle;
+import entities.VentaPOJO;
+import entities.ClientePOJO;
+import entities.VentaDetallePOJO;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
@@ -26,10 +26,10 @@ public class VentaResource {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<Venta> listarVentas() {
+    public List<VentaPOJO> listarVentas() {
         System.out.println("Listar todas las ventas");
-        Venta venta = new Venta();
-        Cliente cliente = new Cliente();
+        VentaPOJO venta = new VentaPOJO();
+        ClientePOJO cliente = new ClientePOJO();
         cliente.setNombre("rodrigp");
         cliente.setCi("122");
         venta.setComprador(cliente);
@@ -41,7 +41,7 @@ public class VentaResource {
     @Path("ultimaVenta")
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Venta listarUltimaVenta() {
+    public VentaPOJO listarUltimaVenta() {
         System.out.println("Lista la ultima venta");
         return dao.listarUVenta();
     }
@@ -49,7 +49,7 @@ public class VentaResource {
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Venta addVenta(Venta venta) {
+    public VentaPOJO addVenta(VentaPOJO venta) {
         
         System.out.println("Creando VENTA" ) ;
         return dao.create(venta);
@@ -59,7 +59,7 @@ public class VentaResource {
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Venta updateVenta(VentaDetalle ventadetalle, @PathParam("id") int venta_id) {
+    public VentaPOJO updateVenta(VentaDetallePOJO ventadetalle, @PathParam("id") int venta_id) {
         System.out.println("Actualizando  Venta:");
         return dao.update(ventadetalle, venta_id);
         

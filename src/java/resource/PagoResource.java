@@ -5,7 +5,7 @@
 package resource;
 
 import entities.Pago;
-import entities.Venta;
+import entities.VentaPOJO;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.GET;
@@ -49,7 +49,7 @@ public class PagoResource {
     @Path("{id}/{formadepago}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Pago updatePago(Venta venta, @PathParam("id") int id_pago) {
+    public Pago updatePago(VentaPOJO venta, @PathParam("id") int id_pago) {
         
         System.out.println("Actualizando  Pago:");
         return dao.updateContado(venta, id_pago);
@@ -59,7 +59,7 @@ public class PagoResource {
     @Path("{id}/{formadepago}/{cuotas}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Pago updatePagoCredito(Venta venta, @PathParam("id") int id_pago, @PathParam("cuotas") int cuotas) {
+    public Pago updatePagoCredito(VentaPOJO venta, @PathParam("id") int id_pago, @PathParam("cuotas") int cuotas) {
         
         System.out.println("Actualizando  Pago:");
         return dao.updateCredito(venta, id_pago, cuotas);

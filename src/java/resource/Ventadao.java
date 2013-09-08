@@ -4,8 +4,8 @@
  */
 package resource;
 
-import entities.Venta;
-import entities.VentaDetalle;
+import entities.VentaPOJO;
+import entities.VentaDetallePOJO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,15 +15,15 @@ import java.util.List;
  */
 public class Ventadao {
     
-    static List<Venta> listaVenta = new ArrayList<Venta>();
+    static List<VentaPOJO> listaVenta = new ArrayList<VentaPOJO>();
     static int cont_id=1;
-    Venta actual;
+    VentaPOJO actual;
     
-    List<Venta> listar() {
+    List<VentaPOJO> listar() {
         return listaVenta;
         }
 
-    Venta create(Venta venta) {
+    VentaPOJO create(VentaPOJO venta) {
         venta.setId(cont_id);
         listaVenta.add(venta);
         cont_id++;
@@ -31,7 +31,7 @@ public class Ventadao {
         return venta;
     }
 
-    Venta update(VentaDetalle ventadetalle, int venta_id) {
+    VentaPOJO update(VentaDetallePOJO ventadetalle, int venta_id) {
        System.out.println("Venta detalle a actualizar "+ listaVenta.size() + " el id de la venta es  " +  venta_id);
         for (int i = 0; i < listaVenta.size(); i++) {
             System.out.println(i + "="+ listaVenta.get(i).getId()+"?" );
@@ -64,7 +64,7 @@ public class Ventadao {
         }
     }
 
-    Venta listarUVenta() {
+    VentaPOJO listarUVenta() {
         System.out.println(" cantidad de Venta  " + listaVenta.size());
         actual = listaVenta.get(listaVenta.size()-1);
         return actual;

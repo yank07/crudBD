@@ -4,7 +4,7 @@
  */
 package resource;
 
-import entities.Cliente;
+import entities.ClientePOJO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +15,15 @@ import java.util.List;
  */
 public class Clientedao {
 
-    static List<Cliente> listaCliente = new ArrayList<Cliente>();
+    static List<ClientePOJO> listaCliente = new ArrayList<ClientePOJO>();
     int contador_id= 1;
-    Cliente actual;
+    ClientePOJO actual;
     
-    List<Cliente> listar() {
+    List<ClientePOJO> listar() {
         return listaCliente;
     }
 
-    Cliente listarPorCi(int id_cliente) {
+    ClientePOJO listarPorCi(int id_cliente) {
         System.out.println("Cliente a retornar"+ listaCliente.size() );
         for (int i = 0; i < listaCliente.size(); i++) {
             System.out.println(i+ "="+ listaCliente.get(i).getCi()+"?" );
@@ -38,7 +38,7 @@ public class Clientedao {
         return actual;
     }
     
-    Cliente create(Cliente cliente) {
+    ClientePOJO create(ClientePOJO cliente) {
         cliente.setId(contador_id);
         listaCliente.add(cliente);//return boolean
         contador_id++;
@@ -51,7 +51,7 @@ public class Clientedao {
  
     
 
-    Cliente update(Cliente cliente) {
+    ClientePOJO update(ClientePOJO cliente) {
        System.out.println("Cliente a actualizar"+ listaCliente.size() );
         for (int i = 0; i < listaCliente.size(); i++) {
             System.out.println(i+ "="+ listaCliente.get(i).getId()+"?" );

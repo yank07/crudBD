@@ -4,7 +4,7 @@
  */
 package resource;
 
-import entities.Producto;
+import entities.ProductoPOJO;
             
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +15,12 @@ import java.util.List;
  */
 public class Productodao {
 
-    static List<Producto> listaProducto = new ArrayList<Producto>();
+    static List<ProductoPOJO> listaProducto = new ArrayList<ProductoPOJO>();
     int contador_id= 1;
-    Producto actual ;
+    ProductoPOJO actual ;
     
     
-    Producto create(Producto producto) {
+    ProductoPOJO create(ProductoPOJO producto) {
         producto.setId(contador_id);
         contador_id++;
         listaProducto.add(producto);//return boolean
@@ -30,11 +30,11 @@ public class Productodao {
         return producto;
     }
 
-    List<Producto> listar() {
+    List<ProductoPOJO> listar() {
         return listaProducto;
     }
 
-    Producto listarPorId(int id_producto) {
+    ProductoPOJO listarPorId(int id_producto) {
         System.out.println("Cliente a retornar"+ listaProducto.size() );
         for (int i = 0; i < listaProducto.size(); i++) {
             System.out.println(i+ "="+ listaProducto.get(i).getId()+"?" );
@@ -51,7 +51,7 @@ public class Productodao {
  
     
 
-    Producto update(Producto producto) {
+    ProductoPOJO update(ProductoPOJO producto) {
        System.out.println("Producto a actualizar"+ listaProducto.size() );
         for (int i = 0; i < listaProducto.size(); i++) {
             System.out.println(i+ "="+ listaProducto.get(i).getId()+"?" );

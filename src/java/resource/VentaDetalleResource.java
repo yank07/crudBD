@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-import entities.VentaDetalle;
+import entities.VentaDetallePOJO;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
@@ -24,7 +24,7 @@ public class VentaDetalleResource {
    
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<VentaDetalle> listarVentaDetalles() {
+    public List<VentaDetallePOJO> listarVentaDetalles() {
         System.out.println("Listar todos los detalles de ventas");
 
         return dao.listar();
@@ -33,7 +33,7 @@ public class VentaDetalleResource {
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public VentaDetalle addVentaDetalle(VentaDetalle ventadetalle) {
+    public VentaDetallePOJO addVentaDetalle(VentaDetallePOJO ventadetalle) {
         System.out.println("Creando VentaDetalle:" ) ;
         return dao.create(ventadetalle);
     }
@@ -42,7 +42,7 @@ public class VentaDetalleResource {
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public VentaDetalle updateVentaDetalle(VentaDetalle ventadetalle) {
+    public VentaDetallePOJO updateVentaDetalle(VentaDetallePOJO ventadetalle) {
         System.out.println("Actualizando  VentaDetalle:");
         return dao.update(ventadetalle);
         

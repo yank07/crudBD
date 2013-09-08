@@ -3,11 +3,11 @@ ABML = {
 Views: {},
         Models: {},
         Collections: {},
-        URL:'http://localhost:8080/CRUD/webresources/clientes'
+        URL:'http://localhost:8080/crudBD/webresources/clientes'
         
 };
         ABML.Collections.Clientes = Backbone.Collection.extend({
-            url: '/CRUD/webresources/clientes/'
+            url: '/crudBD/webresources/clientes/'
         });
         ABML.Models.Cliente = Backbone.Model.extend({
 initialize: function() {
@@ -53,13 +53,13 @@ events: {
                     $.ajax({
                     type: 'POST',
                     contentType: 'application/json',
-                    url: 'http://localhost:8080/CRUD/webresources/ventas',
+                    url: 'http://localhost:8080/crudBD/webresources/ventas',
                     dataType: "json",
                     data: this.formToJSONVenta(),
                     success: function(data, textStatus, jqXHR) {
                         alert('Venta agrego el cliente');
                     $('#btnDelete').show();
-                    window.location.replace("/CRUD/compraProductos.html");
+                    window.location.replace("/crudBD/compraProductos.html");
                     
             },
                     error: function(jqXHR, textStatus, errorThrown) {

@@ -5,7 +5,7 @@
 package resource;
 
 import entities.Pago;
-import entities.Venta;
+import entities.VentaPOJO;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +32,7 @@ public class Pagodao {
         return pago;
     }
 
-    Pago updateContado(Venta venta, int id_pago) {
+    Pago updateContado(VentaPOJO venta, int id_pago) {
        System.out.println("Pago a actualizar"+ listaPago.size() );
         for (int i = 0; i < listaPago.size(); i++) {
             System.out.println(i+ "="+ listaPago.get(i).getId()+"?" );
@@ -51,7 +51,7 @@ public class Pagodao {
 
     }
     
-    Pago updateCredito(Venta venta, int id_pago, int cuotas) {
+    Pago updateCredito(VentaPOJO venta, int id_pago, int cuotas) {
        System.out.println("Pago a actualizar"+ listaPago.size() );
         for (int i = 0; i < listaPago.size(); i++) {
             System.out.println(i+ "="+ listaPago.get(i).getId()+"?" );

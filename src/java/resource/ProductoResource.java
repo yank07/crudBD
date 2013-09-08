@@ -7,7 +7,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
-import entities.Producto;
+import entities.ProductoPOJO;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ProductoResource {
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<Producto> listarProductos() {
+    public List<ProductoPOJO> listarProductos() {
         System.out.println("Listar todos los productos");
 
         return dao.listar();
@@ -32,7 +32,7 @@ public class ProductoResource {
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Producto addProducto(Producto producto) {
+    public ProductoPOJO addProducto(ProductoPOJO producto) {
         System.out.println("Creando Producto:" + producto.getNombre());
         return dao.create(producto);
     }
@@ -40,7 +40,7 @@ public class ProductoResource {
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public Producto updateProducto(Producto producto) {
+    public ProductoPOJO updateProducto(ProductoPOJO producto) {
         System.out.println("Actualizando  Producto:" + producto.getNombre());
         return dao.update(producto);
         

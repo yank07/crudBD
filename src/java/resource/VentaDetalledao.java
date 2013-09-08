@@ -1,23 +1,23 @@
 
 package resource;
 
-import entities.Producto;
-import entities.VentaDetalle;
+import entities.ProductoPOJO;
+import entities.VentaDetallePOJO;
 import java.util.List;
 import java.util.ArrayList;
 
 public class VentaDetalledao {
 
-    static List<VentaDetalle> listaVentaDetalle = new ArrayList<VentaDetalle>();
+    static List<VentaDetallePOJO> listaVentaDetalle = new ArrayList<VentaDetallePOJO>();
 //    static Productodao productodao= new Productodao();
-    Producto producto;
+    ProductoPOJO producto;
     static int cant_vd=1;
     
-    List<VentaDetalle> listar() {
+    List<VentaDetallePOJO> listar() {
         return listaVentaDetalle;
     }
 
-    VentaDetalle create(VentaDetalle ventadetalle) {
+    VentaDetallePOJO create(VentaDetallePOJO ventadetalle) {
        ventadetalle.setId(cant_vd);
        listaVentaDetalle.add(ventadetalle);
        cant_vd++;
@@ -25,7 +25,7 @@ public class VentaDetalledao {
        return ventadetalle;
     }
 
-    VentaDetalle update(VentaDetalle ventadetalle) {
+    VentaDetallePOJO update(VentaDetallePOJO ventadetalle) {
        System.out.println("Venta detalle a actualizar"+ listaVentaDetalle.size() );
         for (int i = 0; i < listaVentaDetalle.size(); i++) {
             System.out.println(i+ "="+ listaVentaDetalle.get(i).getId()+"?" );
