@@ -1,5 +1,7 @@
 package resource;
 
+import Facade.ProductoFacade;
+import entities.Producto;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.GET;
@@ -10,39 +12,45 @@ import javax.ws.rs.core.MediaType;
 import entities.ProductoPOJO;
 
 import java.util.List;
+import javax.ejb.EJB;
 
 
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
-import static resource.ProductoResource.dao;
+
 
 @Path("productos")
 public class ProductoResource {
 
    static Productodao dao = new Productodao();
-
+   @EJB
+   ProductoFacade mgr;
+   Producto producto = new Producto();
+   
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public List<ProductoPOJO> listarProductos() {
+    public List<Producto> listarProductos() {
         System.out.println("Listar todos los productos");
 
-        return dao.listar();
+        return mgr.findAll();
     }
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public ProductoPOJO addProducto(ProductoPOJO producto) {
+    public Producto addProducto(Producto producto) {
         System.out.println("Creando Producto:" + producto.getNombre());
-        return dao.create(producto);
+         mgr.create(producto);
+         return producto;
     }
     @PUT
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public ProductoPOJO updateProducto(ProductoPOJO producto) {
+    public Producto updateProducto(Producto producto) {
         System.out.println("Actualizando  Producto:" + producto.getNombre());
-        return dao.update(producto);
+        mgr.edit(producto);
+        return producto;
         
     }
      
@@ -54,7 +62,8 @@ public class ProductoResource {
         System.out.println("Eliminando Producto con id :" + id);
         
         
-        dao.delete(id);
+         producto = mgr.find(id);
+        mgr.remove(producto);
     }
     
 }

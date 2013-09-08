@@ -4,6 +4,8 @@
  */
 package resource;
 
+import Facade.ProductoFacade;
+import Facade.VentaFacade;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.GET;
@@ -15,7 +17,10 @@ import java.util.List;
 
 import entities.VentaPOJO;
 import entities.ClientePOJO;
+import entities.Producto;
+import entities.Venta;
 import entities.VentaDetallePOJO;
+import javax.ejb.EJB;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
@@ -23,6 +28,10 @@ import javax.ws.rs.PathParam;
 @Path("ventas")
 public class VentaResource {
     static Ventadao dao = new Ventadao();
+    
+     @EJB
+   VentaFacade mgr;
+   Venta venta = new Venta();
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -49,10 +58,11 @@ public class VentaResource {
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public VentaPOJO addVenta(VentaPOJO venta) {
+    public Venta addVenta(Venta venta) {
         
         System.out.println("Creando VENTA" ) ;
-        return dao.create(venta);
+         mgr.create(venta);
+         return venta;
     }
     
     @PUT

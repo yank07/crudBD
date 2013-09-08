@@ -262,8 +262,9 @@ events: {
             });
         },
             formToJSONVenta: function() {
+        var clienteId = $('#clienteId').val();
                     var obj = {
-           'comprador': {'id':clienteId === "" ? null : clienteId,
+           'cliente': {'id':clienteId === "" ? null : clienteId,
                 "nombre": $('#nombre').val(),
                 "direccion": $('#direccion').val(),
                 "ci": $('#ci').val()}

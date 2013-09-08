@@ -69,6 +69,7 @@ public class ClienteResource {
         System.out.println("Eliminando Cliente con id :" + id);
         
         cliente = mgr.find(id);
+        mgr.remove(cliente);
         System.out.println("Ya traigo cliente Eliminar:" + cliente.getId());
     }
     
