@@ -4,7 +4,7 @@ package entities;
 
 public class Pago {
     private int id;
-    private Venta venta;
+    private VentaPOJO venta;
     private int forma_pago;
     private int cuotas;
 
@@ -16,11 +16,11 @@ public class Pago {
         this.id = id;
     }
 
-    public Venta getVenta() {
+    public VentaPOJO getVenta() {
         return venta;
     }
 
-    public void setVenta(Venta venta) {
+    public void setVenta(VentaPOJO venta) {
         this.venta = venta;
     }
 

@@ -8,7 +8,7 @@ package entities;
  *
  * @author Cynthia
  */
-public class Producto {
+public class ProductoPOJO {
     private int id;
     private String nombre;
     private String descripcion;

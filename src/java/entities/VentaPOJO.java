@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Venta {
+public class VentaPOJO {
     private int id;
-    private Cliente comprador;
-    private List<VentaDetalle> detalles = new ArrayList();
+    private ClientePOJO comprador;
+    private List<VentaDetallePOJO> detalles = new ArrayList();
     private int total=0;
     
     public int getId() {
@@ -22,19 +22,19 @@ public class Venta {
         this.id = id;
     }
 
-    public Cliente getComprador() {
+    public ClientePOJO getComprador() {
         return comprador;
     }
 
-    public void setComprador(Cliente comprador) {
+    public void setComprador(ClientePOJO comprador) {
         this.comprador = comprador;
     }
 
-    public List<VentaDetalle> getDetalles() {
+    public List<VentaDetallePOJO> getDetalles() {
         return detalles;
     }
 
-    public void setDetalles(VentaDetalle ventadetalle) {
+    public void setDetalles(VentaDetallePOJO ventadetalle) {
         System.out.println("setee la lista detalle");
         this.detalles.add(ventadetalle);
         this.total=this.total+ventadetalle.getPrecio()*ventadetalle.getCant_venta();

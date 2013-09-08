@@ -4,75 +4,67 @@
  */
 package entities;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
- * @author marco
+ * @author Cynthia
  */
-public class VentaDetalle {
-    private int id;
-    private int id_producto;
-    private String nombre;
-    private String descripcion;
-    private int cantidad;
-    private int precio;
+@Entity
+@XmlRootElement
+public class VentaDetalle implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private int cant_venta;
 
-    public int getId() {
+    @ManyToOne
+    @JoinColumn(name="id_venta")
+    Venta venta;
+    
+    @ManyToOne
+    @JoinColumn(name="id_producto")
+    Producto producto;
+    
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof VentaDetalle)) {
+            return false;
+        }
+        VentaDetalle other = (VentaDetalle) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    @Override
+    public String toString() {
+        return "entities.VentaDetalle[ id=" + id + " ]";
     }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
     
-    public int getId_producto() {
-        return id_producto;
-    }
-
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
-    }
-
-
-
-    public int getCant_venta() {
-        return cant_venta;
-    }
-
-    public void setCant_venta(int cant_venta) {
-        this.cant_venta = cant_venta;
-    }
 }

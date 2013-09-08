@@ -15,7 +15,7 @@ import javax.persistence.Id;
  * @author Cynthia
  */
 
-public class Cliente {
+public class ClientePOJO {
     //private int id;
  
     private int id;

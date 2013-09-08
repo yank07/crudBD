@@ -5,21 +5,55 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Cynthia
  */
 @Entity
-public class ClienteEntity implements Serializable {
+@XmlRootElement
+public class Cliente implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String nombre;
+    private String direccion;
+    private String ci;
+
+   
+   
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getCi() {
+        return ci;
+    }
+
+    public void setCi(String ci) {
+        this.ci = ci;
+    }
 
     public Long getId() {
         return id;
@@ -28,6 +62,8 @@ public class ClienteEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+   
 
     @Override
     public int hashCode() {
@@ -39,10 +75,10 @@ public class ClienteEntity implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ClienteEntity)) {
+        if (!(object instanceof Cliente)) {
             return false;
         }
-        ClienteEntity other = (ClienteEntity) object;
+        Cliente other = (Cliente) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -53,5 +89,4 @@ public class ClienteEntity implements Serializable {
     public String toString() {
         return "entities.ClienteEntity[ id=" + id + " ]";
     }
-    
 }
