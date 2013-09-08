@@ -3,7 +3,7 @@ ABML = {
 Views: {},
         Models: {},
         Collections: {},
-        URL:'http://localhost:8080/CRUD/webresources/pagos',
+        URL:'http://localhost:8080/crudBD/webresources/pagos',
         id_venta : -1,
         total_venta:0,
         tipo_pago:-1,
@@ -11,7 +11,7 @@ Views: {},
         pago:{}
 };
         ABML.Collections.Pagos = Backbone.Collection.extend({
-            url: '/CRUD/webresources/pagos/'
+            url: '/crudBD/webresources/pagos/'
         });
        ABML.Models.Pago= Backbone.Model.extend({
 
@@ -33,7 +33,7 @@ Views: {},
             console.log(ABML.URL);
             $.ajax({
                     type: 'GET',
-                    url: 'http://localhost:8080/CRUD/webresources/ventas/ultimaVenta',
+                    url: 'http://localhost:8080/crudBD/webresources/ventas/ultimaVenta',
                     dataType: "json",
                     success: function(data, textStatus, jqXHR) {
                        ABML.total_venta=data.total;

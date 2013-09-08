@@ -3,11 +3,11 @@ ABML = {
 Views: {},
         Models: {},
         Collections: {},
-        URL:'http://localhost:8080/CRUD/webresources/productos',
+        URL:'http://localhost:8080/crudBD/webresources/productos',
         id_venta : -1
 };
         ABML.Collections.Productos = Backbone.Collection.extend({
-            url: '/CRUD/webresources/productos/'
+            url: '/crudBD/webresources/productos/'
         });
        ABML.Models.Producto = Backbone.Model.extend({
 
@@ -34,7 +34,7 @@ console.log("Se inicializo la vista GRID");
 console.log(ABML.URL);
 	$.ajax({
 		type: 'GET',
-		url: 'http://localhost:8080/CRUD/webresources/ventas/ultimaVenta',
+		url: 'http://localhost:8080/crudBD/webresources/ventas/ultimaVenta',
 		dataType: "json",
 		success: function(data, textStatus, jqXHR) {
                
@@ -191,7 +191,7 @@ console.log(ABML.URL);
             $.ajax({
             type: 'PUT',
             contentType: 'application/json',
-            url: 'http://localhost:8080/CRUD/webresources/ventas/' + ABML.id_venta ,
+            url: 'http://localhost:8080/crudBD/webresources/ventas/' + ABML.id_venta ,
             dataType: "json",
             data: this.formToJSONDetalle(),
             success: function(data, textStatus, jqXHR) {
@@ -247,7 +247,7 @@ console.log(ABML.URL);
      
      irPago: function(){
         console.log("hiciste click en ir a paga");
-         window.location.replace("/CRUD/pago.html");
+         window.location.replace("/crudBD/pago.html");
          return false;
      }
         
