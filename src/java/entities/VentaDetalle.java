@@ -31,7 +31,7 @@ public class VentaDetalle implements Serializable {
     Venta venta;
     
     @ManyToOne
-    @JoinColumn(name="id_producto")
+    @JoinColumn(name="producto")
     Producto producto;
     
     public Long getId() {
@@ -41,6 +41,24 @@ public class VentaDetalle implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public int getCant_venta() {
+        return cant_venta;
+    }
+
+    public void setCant_venta(int cant_venta) {
+        this.cant_venta = cant_venta;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+    
+    
 
     @Override
     public int hashCode() {

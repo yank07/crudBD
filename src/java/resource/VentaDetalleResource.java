@@ -1,6 +1,8 @@
 
 package resource;
 
+import Facade.VentaDetalleFacade;
+import entities.VentaDetalle;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
 import javax.ws.rs.GET;
@@ -11,6 +13,7 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 import entities.VentaDetallePOJO;
+import javax.ejb.EJB;
 
 import javax.ws.rs.POST;
 import javax.ws.rs.PathParam;
@@ -20,6 +23,8 @@ import javax.ws.rs.PathParam;
 public class VentaDetalleResource {
 
    static VentaDetalledao dao = new VentaDetalledao();
+   @EJB
+    VentaDetalleFacade mgr;
 
    
     @GET
@@ -33,9 +38,10 @@ public class VentaDetalleResource {
     @POST
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public VentaDetallePOJO addVentaDetalle(VentaDetallePOJO ventadetalle) {
+    public VentaDetalle addVentaDetalle(VentaDetalle ventadetalle) {
         System.out.println("Creando VentaDetalle:" ) ;
-        return dao.create(ventadetalle);
+        mgr.create(ventadetalle);
+        return ventadetalle;
     }
     
     @PUT
