@@ -84,12 +84,15 @@ public class VentaResource {
     public Venta updateVenta(VentaDetalle ventadetalle, @PathParam("id") int venta_id) {
         System.out.println("Actualizando  Venta:");
         
+        venta = mgr.find(venta_id);
+        ventadetalle.setVenta(venta);
         vdmgr.create(ventadetalle);
         //vdId = ventadetalle.getId();
-        venta = mgr.find(venta_id);
+       // venta = mgr.find(venta_id);
        // ventadetalle2 = vdmgr.find(vdId);
         venta.agregarDetalle(ventadetalle);
         mgr.edit(venta);
+        
         return venta;
         
     }
