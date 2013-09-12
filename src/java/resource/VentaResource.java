@@ -5,6 +5,7 @@
 package resource;
 
 import Facade.ProductoFacade;
+import Facade.VentaDetalleFacade;
 import Facade.VentaFacade;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.PUT;
@@ -19,7 +20,9 @@ import entities.VentaPOJO;
 import entities.ClientePOJO;
 import entities.Producto;
 import entities.Venta;
+import entities.VentaDetalle;
 import entities.VentaDetallePOJO;
+import java.util.ArrayList;
 import javax.ejb.EJB;
 
 import javax.ws.rs.POST;
@@ -29,9 +32,16 @@ import javax.ws.rs.PathParam;
 public class VentaResource {
     static Ventadao dao = new Ventadao();
     
-     @EJB
-   VentaFacade mgr;
+   @EJB
+   VentaFacade mgr;     
+   @EJB
+   VentaDetalleFacade vdmgr;
+   
    Venta venta = new Venta();
+   List<Venta> listaVenta =  new ArrayList <Venta>();
+   
+   private long vdId;
+    private VentaDetalle ventadetalle2;
 
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -50,9 +60,11 @@ public class VentaResource {
     @Path("ultimaVenta")
     @GET
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public VentaPOJO listarUltimaVenta() {
+    public Venta listarUltimaVenta() {
         System.out.println("Lista la ultima venta");
-        return dao.listarUVenta();
+        listaVenta= mgr.findAll();
+        venta= listaVenta.get(listaVenta.size()-1);
+        return venta;
     }
     
     @POST
@@ -69,9 +81,16 @@ public class VentaResource {
     @Path("{id}")
     @Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-    public VentaPOJO updateVenta(VentaDetallePOJO ventadetalle, @PathParam("id") int venta_id) {
+    public Venta updateVenta(VentaDetalle ventadetalle, @PathParam("id") int venta_id) {
         System.out.println("Actualizando  Venta:");
-        return dao.update(ventadetalle, venta_id);
+        
+        vdmgr.create(ventadetalle);
+        //vdId = ventadetalle.getId();
+        venta = mgr.find(venta_id);
+       // ventadetalle2 = vdmgr.find(vdId);
+        venta.agregarDetalle(ventadetalle);
+        mgr.edit(venta);
+        return venta;
         
     }
 

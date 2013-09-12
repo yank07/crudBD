@@ -95,5 +95,9 @@ public class Venta implements Serializable {
     public void setDetalles(List<VentaDetalle> detalles) {
         this.detalles = detalles;
     }
+
+    public void agregarDetalle(VentaDetalle ventadetalle) {
+      detalles.add(ventadetalle);
+    }
     
 }
