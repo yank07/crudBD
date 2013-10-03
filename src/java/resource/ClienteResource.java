@@ -22,6 +22,7 @@ import javax.ws.rs.PathParam;
 public class ClienteResource {
 
    static Clientedao dao = new Clientedao();
+   
    @EJB
    ClienteFacade mgr;
    

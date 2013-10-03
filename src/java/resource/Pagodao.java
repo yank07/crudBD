@@ -4,7 +4,7 @@
  */
 package resource;
 
-import entities.Pago;
+import entities.PagoPOJO;
 import entities.VentaPOJO;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +15,16 @@ import java.util.List;
  */
 public class Pagodao {
 
-    static List<Pago> listaPago = new ArrayList<Pago>();
+    static List<PagoPOJO> listaPago = new ArrayList<PagoPOJO>();
     static int cont_id=1;
-    Pago actual;
+    PagoPOJO actual;
 
     
-    List<Pago> listar() {
+    List<PagoPOJO> listar() {
         return listaPago;
     }
 
-    Pago create(Pago pago) {
+    PagoPOJO create(PagoPOJO pago) {
         pago.setId(cont_id);
         listaPago.add(pago);
         cont_id++;
@@ -32,7 +32,7 @@ public class Pagodao {
         return pago;
     }
 
-    Pago updateContado(VentaPOJO venta, int id_pago) {
+    PagoPOJO updateContado(VentaPOJO venta, int id_pago) {
        System.out.println("Pago a actualizar"+ listaPago.size() );
         for (int i = 0; i < listaPago.size(); i++) {
             System.out.println(i+ "="+ listaPago.get(i).getId()+"?" );
@@ -51,7 +51,7 @@ public class Pagodao {
 
     }
     
-    Pago updateCredito(VentaPOJO venta, int id_pago, int cuotas) {
+    PagoPOJO updateCredito(VentaPOJO venta, int id_pago, int cuotas) {
        System.out.println("Pago a actualizar"+ listaPago.size() );
         for (int i = 0; i < listaPago.size(); i++) {
             System.out.println(i+ "="+ listaPago.get(i).getId()+"?" );

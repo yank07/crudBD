@@ -36,8 +36,11 @@ public class VentaResource {
    VentaFacade mgr;     
    @EJB
    VentaDetalleFacade vdmgr;
+   @EJB
+   ProductoFacade prodmgr;
    
    Venta venta = new Venta();
+   Venta ventaVista=new Venta();
    List<Venta> listaVenta =  new ArrayList <Venta>();
    
    private long vdId;
@@ -64,6 +67,7 @@ public class VentaResource {
         System.out.println("Lista la ultima venta");
         listaVenta= mgr.findAll();
         venta= listaVenta.get(listaVenta.size()-1);
+        System.out.println(venta.getDetalles().toString());
         return venta;
     }
     
@@ -83,17 +87,20 @@ public class VentaResource {
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
     public Venta updateVenta(VentaDetalle ventadetalle, @PathParam("id") int venta_id) {
         System.out.println("Actualizando  Venta:");
-        
         venta = mgr.find(venta_id);
+        mgr.sumarTotal(venta,ventadetalle.getCant_venta()*ventadetalle.getProducto().getPrecio());
         ventadetalle.setVenta(venta);
         vdmgr.create(ventadetalle);
+        
         //vdId = ventadetalle.getId();
        // venta = mgr.find(venta_id);
        // ventadetalle2 = vdmgr.find(vdId);
-        venta.agregarDetalle(ventadetalle);
-        mgr.edit(venta);
+        //venta.agregarDetalle(ventadetalle);
+       // mgr.edit(venta);
         
-        return venta;
+        ventaVista=vdmgr.armarVista(ventaVista);
+        
+        return ventaVista;
         
     }
 

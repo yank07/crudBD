@@ -7,6 +7,7 @@ package entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,28 +23,31 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Cynthia
  */
 @Entity
-@XmlRootElement
+
 public class Venta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
     
+    @Column(name = "id_venta")
+    private int id_venta;
+    
+    @Column(name = "total_venta")
     private int total=0;
 
-    @ManyToOne
-    @JoinColumn(name="cliente")
-    Cliente cliente;
+    @JoinColumn(name="id_cliente", referencedColumnName="id_cliente")
+    @ManyToOne(optional=false)
+    Cliente clienteId;
     
-    @OneToMany(mappedBy = "venta")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ventaId")
     List <VentaDetalle> detalles;
 
     public int getId() {
-        return id;
+        return id_venta;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_venta = id;
     }
     
   
@@ -54,7 +58,7 @@ public class Venta implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Venta[ id=" + id + " ]";
+        return "entities.Venta[ id=" + id_venta + " ]";
     }
 
     public int getTotal() {
@@ -66,11 +70,11 @@ public class Venta implements Serializable {
     }
 
     public Cliente getCliente() {
-        return cliente;
+        return clienteId;
     }
 
     public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+        this.clienteId = cliente;
     }
 
     
@@ -82,9 +86,6 @@ public class Venta implements Serializable {
         this.detalles = detalles;
     }
 
-    public void agregarDetalle(VentaDetalle ventadetalle) {
-      detalles.add(ventadetalle);
-      System.out.println("agregue el detalle a la lista "+ detalles.size() );
-    }
+    
     
 }

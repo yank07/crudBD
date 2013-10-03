@@ -5,34 +5,49 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author Cynthia
  */
 @Entity
-@XmlRootElement
+
 public class Producto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "id_producto")
+    private Integer id_producto;
+    
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "descripcion")
     private String descripcion;
+    
+    @Column(name = "cantidad")
     private int cantidad;
+    
+    @Column(name = "precio")
     private int precio;
 
-    public Long getId() {
-        return id;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoId")
+    private List<VentaDetalle> listaVentaDetalles;
+    
+    public Integer getId() {
+        return id_producto;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Integer id) {
+        this.id_producto = id;
     }
 
     public String getNombre() {
@@ -70,7 +85,7 @@ public class Producto implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (id_producto != null ? id_producto.hashCode() : 0);
         return hash;
     }
 
@@ -81,7 +96,7 @@ public class Producto implements Serializable {
             return false;
         }
         Producto other = (Producto) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id_producto == null && other.id_producto != null) || (this.id_producto != null && !this.id_producto.equals(other.id_producto))) {
             return false;
         }
         return true;
@@ -89,7 +104,7 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Producto[ id=" + id + " ]";
+        return "entities.Producto[ id=" + id_producto + " ]";
     }
     
 }

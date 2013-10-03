@@ -6,6 +6,8 @@ package entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,18 +20,37 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Cynthia
  */
 @Entity
-@XmlRootElement
+
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
+    @Column(name = "id_cliente")
+    private Integer id_cliente;
+    
+    @Column(name = "nombre")    
     private String nombre;
+    
+    @Column(name = "direccion")
     private String direccion;
+    
+    @Column(name = "ci")
     private String ci;
 
+    
    
+
+    public Integer getId_cliente() {
+        return id_cliente;
+    }
+
+    public void setId_cliente(Integer id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+
+
    
     public String getNombre() {
         return nombre;
@@ -55,12 +76,12 @@ public class Cliente implements Serializable {
         this.ci = ci;
     }
 
-    public Long getId() {
-        return id;
+    public int getId() {
+        return id_cliente;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(int id) {
+        this.id_cliente = id;
     }
 
    
@@ -68,7 +89,7 @@ public class Cliente implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (id_cliente != null ? id_cliente.hashCode() : 0);
         return hash;
     }
 
@@ -79,7 +100,7 @@ public class Cliente implements Serializable {
             return false;
         }
         Cliente other = (Cliente) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id_cliente == null && other.id_cliente != null) || (this.id_cliente != null && !this.id_cliente.equals(other.id_cliente))) {
             return false;
         }
         return true;
@@ -87,6 +108,6 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.ClienteEntity[ id=" + id + " ]";
+        return "entities.ClienteEntity[ id=" + id_cliente + " ]";
     }
 }

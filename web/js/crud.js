@@ -63,7 +63,7 @@ events: {
                     
             },
                     error: function(jqXHR, textStatus, errorThrown) {
-            alert('addWine error: ' + textStatus);
+            alert('addCliente error: ' + textStatus);
                     console.log("kilombo frente al arco en la venta");
                     
             }
@@ -102,7 +102,7 @@ events: {
                     $('#clienteId').val(data.id);
             },
                     error: function(jqXHR, textStatus, errorThrown) {
-            alert('addWine error: ' + textStatus);
+            alert('addCliente error: ' + textStatus);
                     console.log("kilombo frente al arco");
             }
                         });
@@ -121,7 +121,8 @@ events: {
             dataType: "json",
             data: this.formToJSON(),
             success: function(data, textStatus, jqXHR) {
-            alert('Wine updated successfully');
+            alert('Cliente actualizado exitosamente');
+            
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert('updateCliente error: ' + textStatus);
@@ -129,7 +130,7 @@ events: {
     });
 },
         deleteCliente: function () {
-	console.log('deleteWine');
+	console.log('deleteCliente');
 	$.ajax({
 		type: 'DELETE',
                 contentType: 'application/json',

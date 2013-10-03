@@ -5,6 +5,7 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,28 +19,30 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Cynthia
  */
 @Entity
-@XmlRootElement
+
 public class VentaDetalle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @Column(name = "id_ventadetalle")
+    private Integer id_ventadetalle;
+    @Column(name = "cant_venta")    
     private int cant_venta;
 
     @ManyToOne
-    @JoinColumn(name="venta")
-    Venta venta;
+    @JoinColumn(name="id_venta", referencedColumnName="id_venta")
+    Venta ventaId;
     
     @ManyToOne
-    @JoinColumn(name="producto")
-    Producto producto;
+    @JoinColumn(name="id_producto", referencedColumnName="id_producto")
+    Producto productoId;
     
-    public Long getId() {
-        return id;
+    public Integer getId() {
+        return id_ventadetalle;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Integer id) {
+        this.id_ventadetalle = id;
     }
 
     public int getCant_venta() {
@@ -51,19 +54,19 @@ public class VentaDetalle implements Serializable {
     }
 
     public Producto getProducto() {
-        return producto;
+        return productoId;
     }
 
     public void setProducto(Producto producto) {
-        this.producto = producto;
+        this.productoId = producto;
     }
 
-    public Venta getVenta() {
-        return venta;
-    }
+    //public Venta getVenta() {
+      //  return ventaId;
+    //}
 
     public void setVenta(Venta venta) {
-        this.venta = venta;
+        this.ventaId = venta;
     }
     
     
@@ -71,7 +74,7 @@ public class VentaDetalle implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (id_ventadetalle != null ? id_ventadetalle.hashCode() : 0);
         return hash;
     }
 
@@ -82,7 +85,7 @@ public class VentaDetalle implements Serializable {
             return false;
         }
         VentaDetalle other = (VentaDetalle) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id_ventadetalle == null && other.id_ventadetalle != null) || (this.id_ventadetalle != null && !this.id_ventadetalle.equals(other.id_ventadetalle))) {
             return false;
         }
         return true;
@@ -90,7 +93,7 @@ public class VentaDetalle implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.VentaDetalle[ id=" + id + " ]";
+        return "entities.VentaDetalle[ id=" + id_ventadetalle + " ]";
     }
     
 }

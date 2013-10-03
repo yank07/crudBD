@@ -196,31 +196,7 @@ console.log(ABML.URL);
             data: this.formToJSONDetalle(),
             success: function(data, textStatus, jqXHR) {
                         alert('Venta detalle create successfully');
-                          var gridDataDetalle = data;
-                            var gridSource =
-                            {
-                                localdata: gridDataDetalle,
-                                datatype: 'json'
-                            };
-                            var gridDataAdapter = new $.jqx.dataAdapter(gridSource);
-                            $("#jqxgrid2").jqxGrid(
-                            {
-                                width: 300,
-                                source: gridDataAdapter,
-
-                                pageable: true,
-                                autoheight: true,
-
-
-                                columns: [
-                                  { text: 'nombre', datafield: 'nombre', width: 150 },
-                                  { text: 'cant de venta', datafield: 'cant_venta', width: 150 }
-                                  
-                                  
-                               
-
-                             ]
-                        });
+                      
             
             },
             error: function(jqXHR, textStatus, errorThrown) {
@@ -235,11 +211,13 @@ console.log(ABML.URL);
             var productoId = $('#productoId').val();
           console.log("formtojson");
            return JSON.stringify({
-                "id_producto": productoId === "" ? null : productoId,
+               producto: {
+                "id": productoId === "" ? null : productoId,
                 "nombre": $('#nombre').val(),
                 "cantidad": $('#cantidad').val(),
                 "descripcion": $('#descripcion').val(),
-                "precio": $('#precio').val(),
+                "precio": $('#precio').val()
+            },
                 "cant_venta": $('#cant_venta').val()
                 
             });
